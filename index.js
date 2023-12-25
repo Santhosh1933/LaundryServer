@@ -15,28 +15,13 @@ app.use(
   })
 );
 
-mongoose.connect(
-  `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.sfg9p5s.mongodb.net/?retryWrites=true&w=majority`,
-  { useNewUrlParser: true, useUnifiedTopology: true }
-);
+async function connection() {
+  await mongoose.connect(
+    `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.sfg9p5s.mongodb.net/?retryWrites=true&w=majority`
+  );
+}
 
-const connection = mongoose.connection;
-
-connection.on("error", (error) => {
-  console.error("MongoDB connection error:", error);
-});
-
-connection.once("open", () => {
-  console.log("Connected to MongoDB");
-});
-
-connection.on("disconnected", () => {
-  console.log("MongoDB connection disconnected");
-});
-
-connection.on("reconnected", () => {
-  console.log("MongoDB connection reconnected");
-});
+connection();
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`listening on http://localhost:${port}`));
