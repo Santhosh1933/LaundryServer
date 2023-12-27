@@ -15,13 +15,23 @@ app.use(
   })
 );
 
-async function connection() {
-  await mongoose.connect(
-    `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.sfg9p5s.mongodb.net/?retryWrites=true&w=majority`
-  );
+async function connectToMongoDB() {
+  try {
+    console.log("Connecting to MongoDB...");
+    console.log("MongoDB Username:", process.env.MONGODB_USERNAME);
+    console.log("MongoDB Password:", process.env.MONGODB_PASSWORD);
+
+    await mongoose.connect(
+      `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.sfg9p5s.mongodb.net/test?retryWrites=true&w=majority`
+    );
+
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error);
+  }
 }
 
-connection();
+connectToMongoDB();
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`listening on http://localhost:${port}`));
