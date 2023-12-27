@@ -12,6 +12,8 @@ app.use(express.json());
 app.use(
   cors({
     origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
   })
 );
 
@@ -52,12 +54,13 @@ app.get("/", async (req, res) => {
 
 app.post("/register", async (req, res) => {
   try {
-    const { name, password, mobile, registerNumber } = req.body;
+    const { name, password, mobile, registerNumber, year } = req.body;
     const data = await userModel.create({
       name,
       password,
       mobile,
       registerNumber,
+      year
     });
     await data.save();
     return await res.status(200).send(data);

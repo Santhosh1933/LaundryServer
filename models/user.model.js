@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   notificationToken: { type: String, default: null },
   registerNumber: { type: String, require: true, unique: true },
+  year: { type: Number, require: true },
 });
 
 module.exports = mongoose.model("user", userSchema);
