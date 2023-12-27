@@ -42,6 +42,12 @@ const DecodedToken = (token) => {
   return jwt.verify(token, process.env.SECRET_KEY);
 };
 
+// Home route
+
+app.get("/", async (req, res) => {
+  res.send("Welcome Home");
+});
+
 // sign-up Route
 
 app.post("/register", async (req, res) => {
