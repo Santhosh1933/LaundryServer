@@ -22,7 +22,7 @@ async function connectToMongoDB() {
     console.log("MongoDB Password:", process.env.MONGODB_PASSWORD);
 
     await mongoose.connect(
-      `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.sfg9p5s.mongodb.net/test?retryWrites=true&w=majority`
+      `mongodb+srv://santhosh:${process.env.MONGODB_PASSWORD}@laundry-service.mopo5cn.mongodb.net/?retryWrites=true&w=majority`
     );
 
     console.log("Connected to MongoDB");
