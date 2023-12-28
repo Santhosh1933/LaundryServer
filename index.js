@@ -20,8 +20,6 @@ app.use(
 async function connectToMongoDB() {
   try {
     console.log("Connecting to MongoDB...");
-    console.log("MongoDB Username:", process.env.MONGODB_USERNAME);
-    console.log("MongoDB Password:", process.env.MONGODB_PASSWORD);
 
     await mongoose.connect(
       `mongodb+srv://santhosh:${process.env.MONGODB_PASSWORD}@laundry-service.mopo5cn.mongodb.net/?retryWrites=true&w=majority`
