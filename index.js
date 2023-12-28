@@ -89,6 +89,7 @@ app.post("/login", async (req, res) => {
       //   },
       //   process.env.SECRET_KEY
       // );
+      console.log(data);
       return await res.status(200).send(data[0]);
     } else {
       return await res.status(409).send({ login: "login failed" });
