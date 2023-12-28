@@ -60,7 +60,7 @@ app.post("/register", async (req, res) => {
       password,
       mobile,
       registerNumber,
-      year
+      year,
     });
     await data.save();
     return await res.status(200).send(data);
@@ -81,17 +81,17 @@ app.post("/login", async (req, res) => {
       password: password,
     });
     if (data.length !== 0) {
-      const token = jwt.sign(
-        {
-          id: data[0]._id,
-          name: data[0].name,
-          registerNumber: data[0].registerNumber,
-        },
-        process.env.SECRET_KEY
-      );
-      return await res.status(200).send({ token });
+      // const token = jwt.sign(
+      //   {
+      //     id: data[0]._id,
+      //     name: data[0].name,
+      //     registerNumber: data[0].registerNumber,
+      //   },
+      //   process.env.SECRET_KEY
+      // );
+      return await res.status(200).send(data[0]);
     } else {
-      return await res.status(400).send({ login: "login failed" });
+      return await res.status(409).send({ login: "login failed" });
     }
   } catch (error) {
     return res.send(error).status(500);
